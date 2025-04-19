@@ -1,0 +1,97 @@
+/* General Form Styling */
+.task-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  margin: 3px auto;
+  font-family: 'Arial', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.task-form:hover {
+  transform: scale(1.02);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.input-field {
+  padding: 12px;
+  border-radius: 6px;
+  max-width:280px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: #4CAF50;
+}
+
+.select-group {
+  display: flex;
+  gap: 15px;
+}
+
+.select-field {
+  flex: 1;
+}
+
+.textarea {
+  height: 120px;
+  resize: none;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .task-form {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+  }
+
+  .select-group {
+    flex-direction: column;
+  }
+
+  .select-field, .input-field, .textarea {
+    width: 100%;
+  }
+}

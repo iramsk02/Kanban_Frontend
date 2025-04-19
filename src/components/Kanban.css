@@ -1,0 +1,84 @@
+/* Kanban.css */
+
+/* Main container for the board */
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Flex container to align the AddTaskForm and Kanban board side by side */
+  .add-task-and-board {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px; /* Ensures space below the Kanban board */
+  }
+  
+  /* Adjust the size of the progress chart */
+  .task-progress-chart {
+    width: 100%; /* Make the chart full width to fit below the Kanban board */
+    height: 400px; /* Limit the height of the chart */
+    margin-top: 20px; /* Add margin to separate from the Kanban board */
+  }
+  
+  /* Adjust the Kanban board */
+  .kanban-board {
+    display: flex;
+    gap: 20px;
+    flex: 1; /* This makes the Kanban board take the available space */
+    padding: 10px;
+  }
+  
+  /* Column styles for each task column */
+  .column {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f4f7fc;
+  }
+  
+  /* Task card styles */
+  .task-card {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Task actions buttons */
+  .task-actions button {
+    padding: 6px 12px;
+    margin: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .task-actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Priority badge styling */
+  .priority-badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Style for the task-attachment section */
+  .task-attachment {
+    margin-top: 10px;
+  }
+  
+  .attachment-preview {
+    max-width: 100%;
+    max-height: 150px;
+  }
+  
