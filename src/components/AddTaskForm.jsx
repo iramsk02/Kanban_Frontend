@@ -121,18 +121,7 @@ const AddTaskForm = () => {
         </div>
         <button type="submit" className="submit-btn">➕ Add Task</button>
 
-        {uploadedFileURL && (
-          <div className="preview">
-            <p>📎 Attachment Preview:</p>
-            {uploadedFileURL.match(/\.(jpeg|jpg|png|gif)$/i) ? (
-              <img src={uploadedFileURL} alt="Uploaded Preview" className="uploaded-preview" />
-            ) : (
-              <a href={uploadedFileURL} target="_blank" rel="noopener noreferrer">
-                View Uploaded File
-              </a>
-            )}
-          </div>
-        )}
+       
       </div>
     </form>
   );
