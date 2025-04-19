@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:e2e": "npx playwright test"  },
+    "test:e2e": "npx playwright test",
+    "start": "npx vite preview"  },
   "dependencies": {
     "axios": "^1.8.4",
     "chart.js": "^4.4.9",
