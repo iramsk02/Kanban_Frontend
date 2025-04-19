@@ -121,7 +121,7 @@ const AddTaskForm = () => {
         </div>
         <button type="submit" className="submit-btn">➕ Add Task</button>
 
-        {uploadedFileURL && (
+{/*         {uploadedFileURL && (
           <div className="preview">
             <p>📎 Attachment Preview:</p>
             {uploadedFileURL.match(/\.(jpeg|jpg|png|gif)$/i) ? (
@@ -132,7 +132,7 @@ const AddTaskForm = () => {
               </a>
             )}
           </div>
-        )}
+        )} */}
       </div>
     </form>
   );
