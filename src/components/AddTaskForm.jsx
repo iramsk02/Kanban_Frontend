@@ -44,7 +44,7 @@ const AddTaskForm = () => {
           formData.append('file', file);
 
           const uploadResponse = await axios.post(
-            `${API_URL}/api/tasks/upload/${response.data.id}`,
+            `https://kanban-backend-2.onrender.com/api/tasks/upload/${response.data.id}`,
             formData
           );
 
