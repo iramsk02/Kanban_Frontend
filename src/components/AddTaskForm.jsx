@@ -155,34 +155,32 @@ const AddTaskForm = ({ onAddTask }) => {
     e.preventDefault();
     setUploading(true);
 
-    const newTask = {
-      ...task,
-      status: 'todo',
-    };
-
     try {
       // Step 1: Create the task
-      const response = await axios.post(`https://kanban-backend-2.onrender.com/api/tasks`, newTask);
+      const createRes = await axios.post(
+        `https://kanban-backend-2.onrender.com/api/tasks`,
+        { ...task, status: 'todo' }
+      );
 
-      let createdTask = response.data;
+      let createdTask = createRes.data;
 
-      // Step 2: If there's a file, upload it
-      if (file) {
+      // Step 2: Upload file if present
+      if (file && createdTask.id) {
         const formData = new FormData();
         formData.append('file', file);
 
-        const uploadResponse = await axios.post(
+        const uploadRes = await axios.post(
           `https://kanban-backend-2.onrender.com/api/tasks/upload/${createdTask.id}`,
           formData
         );
 
-        createdTask = uploadResponse.data.task;
+        createdTask = uploadRes.data.task;
       }
 
-      // Step 3: Notify parent
+      // Step 3: Inform parent to re-render
       onAddTask(createdTask);
 
-      // Reset form
+      // Step 4: Reset form
       setTask({
         title: '',
         description: '',
@@ -190,8 +188,9 @@ const AddTaskForm = ({ onAddTask }) => {
         category: 'Feature',
       });
       setFile(null);
-    } catch (error) {
-      console.error('Error creating task:', error);
+    } catch (err) {
+      console.error('❌ Error adding task:', err);
+      alert('Failed to add task');
     } finally {
       setUploading(false);
     }
@@ -199,59 +198,44 @@ const AddTaskForm = ({ onAddTask }) => {
 
   return (
     <form onSubmit={handleSubmit} className="task-form">
-      <h3 className="form-title">📝 Add New Task</h3>
-      <div className="form-fields">
-        <input
-          name="title"
-          value={task.title}
-          onChange={handleChange}
-          required
-          placeholder="Task Title"
-          className="input-field"
-        />
-        <div className="select-group">
-          <select
-            id="priority"
-            name="priority"
-            value={task.priority}
-            onChange={handleChange}
-            className="input-field select-field"
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-          <select
-            name="category"
-            value={task.category}
-            onChange={handleChange}
-            className="input-field select-field"
-          >
-            <option value="Feature">Feature</option>
-            <option value="Bug">Bug</option>
-            <option value="Enhancement">Enhancement</option>
-          </select>
-        </div>
-        <textarea
-          name="description"
-          value={task.description}
-          onChange={handleChange}
-          placeholder="Description"
-          className="input-field textarea"
-        />
-        <div className="file-upload">
-          <label htmlFor="file-upload" className="file-label">Upload Attachment</label>
-          <input
-            type="file"
-            id="file-upload"
-            onChange={handleFileChange}
-            className="input-field"
-          />
-        </div>
-        <button type="submit" className="submit-btn" disabled={uploading}>
-          {uploading ? 'Adding...' : '➕ Add Task'}
-        </button>
+      <h3>Add New Task</h3>
+
+      <input
+        name="title"
+        placeholder="Title"
+        value={task.title}
+        onChange={handleChange}
+        required
+        className="input-field"
+      />
+
+      <textarea
+        name="description"
+        placeholder="Description"
+        value={task.description}
+        onChange={handleChange}
+        className="input-field"
+      />
+
+      <div className="select-group">
+        <select name="priority" value={task.priority} onChange={handleChange}>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+
+        <select name="category" value={task.category} onChange={handleChange}>
+          <option value="Feature">Feature</option>
+          <option value="Bug">Bug</option>
+          <option value="Enhancement">Enhancement</option>
+        </select>
       </div>
+
+      <input type="file" onChange={handleFileChange} />
+
+      <button type="submit" disabled={uploading}>
+        {uploading ? 'Adding...' : 'Add Task'}
+      </button>
     </form>
   );
 };
