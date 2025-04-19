@@ -1,5 +1,3 @@
-
-
 // export default KanbanBoard;
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -95,7 +93,7 @@ const KanbanBoard = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get(`${process.env.API_URL}/api/tasks`);
+                const response = await axios.get(`https://kanban-backend-2.onrender.com/api/tasks`);
                 setTasks(response.data);
                 setLoading(false);
             } catch (err) {
@@ -108,7 +106,7 @@ const KanbanBoard = () => {
     // Handle moving task between columns
     const handleMoveTask = async (taskId, status) => {
         try {
-            const response = await axios.put(`${process.env.API_URL}/api/tasks/${taskId}`, { status });
+            const response = await axios.put(`https://kanban-backend-2.onrender.com/api/tasks/${taskId}`, { status });
             console.log('Task moved:', response.data);
             setTasks(tasks.map((task) => task.id === taskId ? { ...task, status } : task));
         } catch (err) {
@@ -119,7 +117,7 @@ const KanbanBoard = () => {
     // Handle deleting a task
     const handleDeleteTask = async (taskId) => {
         try {
-            const response = await axios.delete(`${process.env.API_URL}/api/tasks/${taskId}`);
+            const response = await axios.delete(`https://kanban-backend-2.onrender.com/api/tasks/${taskId}`);
             console.log('Task deleted:', response.data);
             setTasks(tasks.filter((task) => task.id !== taskId));
         } catch (err) {
@@ -130,7 +128,7 @@ const KanbanBoard = () => {
     // Handle adding a task
     const handleAddTask = async (newTask) => {
         try {
-            const response = await axios.post(`${process.env.API_URL}/api/tasks`, newTask);
+            const response = await axios.post(`https://kanban-backend-2.onrender.com/api/tasks`, newTask);
             const addedTask = response.data;
             setTasks((prevTasks) => [...prevTasks, addedTask]);
         } catch (err) {

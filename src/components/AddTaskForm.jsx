@@ -34,7 +34,7 @@ const AddTaskForm = () => {
     };
 
     try {
-      const response = await axios.post(`${process.env.API_URL}/api/tasks`, newTask);
+      const response = await axios.post(`https://kanban-backend-2.onrender.com/api/tasks`, newTask);
 
       console.log('Task created successfully:', response.status, response.data);
 
