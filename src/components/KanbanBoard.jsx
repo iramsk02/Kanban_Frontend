@@ -94,7 +94,7 @@ const KanbanBoard = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/tasks');
+                const response = await axios.get(`${API_URL}/api/tasks`);
                 setTasks(response.data);
                 setLoading(false);
             } catch (err) {
@@ -107,7 +107,7 @@ const KanbanBoard = () => {
     // Handle moving task between columns
     const handleMoveTask = async (taskId, status) => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/tasks/${taskId}`, { status });
+            const response = await axios.put(`${API_URL}/api/tasks/${taskId}`, { status });
             console.log('Task moved:', response.data);
             setTasks(tasks.map((task) => task.id === taskId ? { ...task, status } : task));
         } catch (err) {

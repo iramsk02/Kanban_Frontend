@@ -34,7 +34,7 @@ const AddTaskForm = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/tasks', newTask);
+      const response = await axios.post(`${API_URL}/api/tasks`, newTask);
 
       console.log('Task created successfully:', response.status, response.data);
 
@@ -44,7 +44,7 @@ const AddTaskForm = () => {
           formData.append('file', file);
 
           const uploadResponse = await axios.post(
-            `http://localhost:5000/api/tasks/upload/${response.data.id}`,
+            `${API_URL}/api/tasks/upload/${response.data.id}`,
             formData
           );
 
